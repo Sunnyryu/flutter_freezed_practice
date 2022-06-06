@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
         const Divider(
           height: 1,
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         )
       ],
@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
-            padding: EdgeInsets.only(left: 10, right: 10),
+            padding: const EdgeInsets.only(left: 10, right: 10),
             child: Column(
               children: [
                 renderText('person1.id', personOne.id.toString()),
