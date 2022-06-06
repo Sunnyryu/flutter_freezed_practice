@@ -43,29 +43,20 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  mapWhen(Person person) {
+    return person.when(
+        (id, name, age, statusCode) =>
+            'id: $id, name: $name, age: $age, statusCode: $statusCode',
+        loading: (int? statusCode) => 'loading...',
+        error: (String message, int? statusCode) => message);
+  }
+
   @override
   Widget build(BuildContext context) {
-    final schoolOne = School(id: 3, name: 'MIT');
-    final groupOne =
-        Group(id: 2, name: 'Flutter Development', school: schoolOne);
-    final personOne = Person(id: 1, name: 'sunny', age: 29, group: groupOne);
+    final person = Person(id: 1, name: "sunny", age: 29, statusCode: 200);
+    final personLoading = Person.loading();
+    final personError = Person.error('accessToken이 잘못됐습니다.', statusCode: 401);
 
-    final personNew = personOne.copyWith(
-      group: groupOne.copyWith(
-        school: schoolOne.copyWith(
-          name: 'Yale',
-        ),
-      ),
-    );
-    final personNewTwo = personOne.copyWith.group.school(name: 'Harvard');
-
-    final personTwo = Person(id: 1, name: 'sunny', age: 29, group: groupOne);
-    final personThree = Person(
-        id: personOne.id, name: personOne.name, age: 18, group: groupOne);
-    final personFour = personOne.copyWith(age: 18);
-
-    // personOne.hello();
-    // 호출 가능!
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
@@ -78,16 +69,14 @@ class _HomePageState extends State<HomePage> {
             padding: EdgeInsets.only(left: 10, right: 10),
             child: Column(
               children: [
-                renderText('person1.id', personOne.id.toString()),
-                renderText('person1.name', personOne.name),
-                renderText('person1.age', personOne.age.toString()),
-                renderText('toString()', personOne.toString()),
-                // renderText('toJson()', personOne.toJson().toString()),
-                renderText('==', (personOne == personTwo).toString()),
-                renderText('nameLength', personOne.nameLength.toString()),
-                renderText('person4.ToString()', personFour.toString()),
-                renderText('personNew.ToString()', personNew.toString()),
-                renderText('personNewTwo.ToString()', personNewTwo.toString()),
+                renderText('person', person.toString()),
+                renderText('personLoading', personLoading.toString()),
+                renderText('personError', personError.toString()),
+                renderText('personcode', person.statusCode.toString()),
+                // renderText('person', person.id), 맨 위 객체에선 statusCode만 공통되기에 에러 발생
+                renderText('person.when', mapWhen(person)),
+                renderText('personLoading.when', mapWhen(personLoading)),
+                renderText('personError.when', mapWhen(personError)),
               ],
             ),
           ),

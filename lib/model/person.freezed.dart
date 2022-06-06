@@ -16,10 +16,51 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Person {
-  int get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  int get age => throw _privateConstructorUsedError;
-  Group get group => throw _privateConstructorUsedError;
+  int? get statusCode => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(int id, String name, int age, int? statusCode) $default, {
+    required TResult Function(int? statusCode) loading,
+    required TResult Function(String message, int? statusCode) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult Function(int id, String name, int age, int? statusCode)? $default, {
+    TResult Function(int? statusCode)? loading,
+    TResult Function(String message, int? statusCode)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(int id, String name, int age, int? statusCode)? $default, {
+    TResult Function(int? statusCode)? loading,
+    TResult Function(String message, int? statusCode)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Person value) $default, {
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Error value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult Function(_Person value)? $default, {
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Error value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Person value)? $default, {
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PersonCopyWith<Person> get copyWith => throw _privateConstructorUsedError;
@@ -29,9 +70,7 @@ mixin _$Person {
 abstract class $PersonCopyWith<$Res> {
   factory $PersonCopyWith(Person value, $Res Function(Person) then) =
       _$PersonCopyWithImpl<$Res>;
-  $Res call({int id, String name, int age, Group group});
-
-  $GroupCopyWith<$Res> get group;
+  $Res call({int? statusCode});
 }
 
 /// @nodoc
@@ -44,36 +83,14 @@ class _$PersonCopyWithImpl<$Res> implements $PersonCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
-    Object? age = freezed,
-    Object? group = freezed,
+    Object? statusCode = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      age: age == freezed
-          ? _value.age
-          : age // ignore: cast_nullable_to_non_nullable
-              as int,
-      group: group == freezed
-          ? _value.group
-          : group // ignore: cast_nullable_to_non_nullable
-              as Group,
+      statusCode: statusCode == freezed
+          ? _value.statusCode
+          : statusCode // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
-  }
-
-  @override
-  $GroupCopyWith<$Res> get group {
-    return $GroupCopyWith<$Res>(_value.group, (value) {
-      return _then(_value.copyWith(group: value));
-    });
   }
 }
 
@@ -82,10 +99,7 @@ abstract class _$$_PersonCopyWith<$Res> implements $PersonCopyWith<$Res> {
   factory _$$_PersonCopyWith(_$_Person value, $Res Function(_$_Person) then) =
       __$$_PersonCopyWithImpl<$Res>;
   @override
-  $Res call({int id, String name, int age, Group group});
-
-  @override
-  $GroupCopyWith<$Res> get group;
+  $Res call({int id, String name, int age, int? statusCode});
 }
 
 /// @nodoc
@@ -102,7 +116,7 @@ class __$$_PersonCopyWithImpl<$Res> extends _$PersonCopyWithImpl<$Res>
     Object? id = freezed,
     Object? name = freezed,
     Object? age = freezed,
-    Object? group = freezed,
+    Object? statusCode = freezed,
   }) {
     return _then(_$_Person(
       id: id == freezed
@@ -117,25 +131,22 @@ class __$$_PersonCopyWithImpl<$Res> extends _$PersonCopyWithImpl<$Res>
           ? _value.age
           : age // ignore: cast_nullable_to_non_nullable
               as int,
-      group: group == freezed
-          ? _value.group
-          : group // ignore: cast_nullable_to_non_nullable
-              as Group,
+      statusCode: statusCode == freezed
+          ? _value.statusCode
+          : statusCode // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_Person extends _Person {
+class _$_Person implements _Person {
   _$_Person(
       {required this.id,
       required this.name,
       required this.age,
-      required this.group})
-      : assert(name.isNotEmpty, 'name cannot be empty'),
-        assert(age >= 0),
-        super._();
+      this.statusCode});
 
   @override
   final int id;
@@ -144,11 +155,11 @@ class _$_Person extends _Person {
   @override
   final int age;
   @override
-  final Group group;
+  final int? statusCode;
 
   @override
   String toString() {
-    return 'Person(id: $id, name: $name, age: $age, group: $group)';
+    return 'Person(id: $id, name: $name, age: $age, statusCode: $statusCode)';
   }
 
   @override
@@ -159,7 +170,8 @@ class _$_Person extends _Person {
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.age, age) &&
-            const DeepCollectionEquality().equals(other.group, group));
+            const DeepCollectionEquality()
+                .equals(other.statusCode, statusCode));
   }
 
   @override
@@ -168,30 +180,94 @@ class _$_Person extends _Person {
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(age),
-      const DeepCollectionEquality().hash(group));
+      const DeepCollectionEquality().hash(statusCode));
 
   @JsonKey(ignore: true)
   @override
   _$$_PersonCopyWith<_$_Person> get copyWith =>
       __$$_PersonCopyWithImpl<_$_Person>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(int id, String name, int age, int? statusCode) $default, {
+    required TResult Function(int? statusCode) loading,
+    required TResult Function(String message, int? statusCode) error,
+  }) {
+    return $default(id, name, age, statusCode);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult Function(int id, String name, int age, int? statusCode)? $default, {
+    TResult Function(int? statusCode)? loading,
+    TResult Function(String message, int? statusCode)? error,
+  }) {
+    return $default?.call(id, name, age, statusCode);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(int id, String name, int age, int? statusCode)? $default, {
+    TResult Function(int? statusCode)? loading,
+    TResult Function(String message, int? statusCode)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(id, name, age, statusCode);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Person value) $default, {
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Error value) error,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult Function(_Person value)? $default, {
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Error value)? error,
+  }) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Person value)? $default, {
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _Person extends Person {
+abstract class _Person implements Person {
   factory _Person(
       {required final int id,
       required final String name,
       required final int age,
-      required final Group group}) = _$_Person;
-  _Person._() : super._();
+      final int? statusCode}) = _$_Person;
 
-  @override
   int get id => throw _privateConstructorUsedError;
-  @override
   String get name => throw _privateConstructorUsedError;
-  @override
   int get age => throw _privateConstructorUsedError;
   @override
-  Group get group => throw _privateConstructorUsedError;
+  int? get statusCode => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_PersonCopyWith<_$_Person> get copyWith =>
@@ -199,286 +275,295 @@ abstract class _Person extends Person {
 }
 
 /// @nodoc
-mixin _$Group {
-  int get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  School get school => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $GroupCopyWith<Group> get copyWith => throw _privateConstructorUsedError;
+abstract class _$$_LoadingCopyWith<$Res> implements $PersonCopyWith<$Res> {
+  factory _$$_LoadingCopyWith(
+          _$_Loading value, $Res Function(_$_Loading) then) =
+      __$$_LoadingCopyWithImpl<$Res>;
+  @override
+  $Res call({int? statusCode});
 }
 
 /// @nodoc
-abstract class $GroupCopyWith<$Res> {
-  factory $GroupCopyWith(Group value, $Res Function(Group) then) =
-      _$GroupCopyWithImpl<$Res>;
-  $Res call({int id, String name, School school});
+class __$$_LoadingCopyWithImpl<$Res> extends _$PersonCopyWithImpl<$Res>
+    implements _$$_LoadingCopyWith<$Res> {
+  __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
+      : super(_value, (v) => _then(v as _$_Loading));
 
-  $SchoolCopyWith<$Res> get school;
-}
-
-/// @nodoc
-class _$GroupCopyWithImpl<$Res> implements $GroupCopyWith<$Res> {
-  _$GroupCopyWithImpl(this._value, this._then);
-
-  final Group _value;
-  // ignore: unused_field
-  final $Res Function(Group) _then;
+  @override
+  _$_Loading get _value => super._value as _$_Loading;
 
   @override
   $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
-    Object? school = freezed,
+    Object? statusCode = freezed,
   }) {
-    return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      school: school == freezed
-          ? _value.school
-          : school // ignore: cast_nullable_to_non_nullable
-              as School,
-    ));
-  }
-
-  @override
-  $SchoolCopyWith<$Res> get school {
-    return $SchoolCopyWith<$Res>(_value.school, (value) {
-      return _then(_value.copyWith(school: value));
-    });
-  }
-}
-
-/// @nodoc
-abstract class _$$_GroupCopyWith<$Res> implements $GroupCopyWith<$Res> {
-  factory _$$_GroupCopyWith(_$_Group value, $Res Function(_$_Group) then) =
-      __$$_GroupCopyWithImpl<$Res>;
-  @override
-  $Res call({int id, String name, School school});
-
-  @override
-  $SchoolCopyWith<$Res> get school;
-}
-
-/// @nodoc
-class __$$_GroupCopyWithImpl<$Res> extends _$GroupCopyWithImpl<$Res>
-    implements _$$_GroupCopyWith<$Res> {
-  __$$_GroupCopyWithImpl(_$_Group _value, $Res Function(_$_Group) _then)
-      : super(_value, (v) => _then(v as _$_Group));
-
-  @override
-  _$_Group get _value => super._value as _$_Group;
-
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
-    Object? school = freezed,
-  }) {
-    return _then(_$_Group(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      school: school == freezed
-          ? _value.school
-          : school // ignore: cast_nullable_to_non_nullable
-              as School,
+    return _then(_$_Loading(
+      statusCode: statusCode == freezed
+          ? _value.statusCode
+          : statusCode // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_Group implements _Group {
-  _$_Group({required this.id, required this.name, required this.school});
+class _$_Loading implements _Loading {
+  _$_Loading({this.statusCode});
 
   @override
-  final int id;
-  @override
-  final String name;
-  @override
-  final School school;
+  final int? statusCode;
 
   @override
   String toString() {
-    return 'Group(id: $id, name: $name, school: $school)';
+    return 'Person.loading(statusCode: $statusCode)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Group &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.school, school));
+            other is _$_Loading &&
+            const DeepCollectionEquality()
+                .equals(other.statusCode, statusCode));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(school));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(statusCode));
 
   @JsonKey(ignore: true)
   @override
-  _$$_GroupCopyWith<_$_Group> get copyWith =>
-      __$$_GroupCopyWithImpl<_$_Group>(this, _$identity);
+  _$$_LoadingCopyWith<_$_Loading> get copyWith =>
+      __$$_LoadingCopyWithImpl<_$_Loading>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(int id, String name, int age, int? statusCode) $default, {
+    required TResult Function(int? statusCode) loading,
+    required TResult Function(String message, int? statusCode) error,
+  }) {
+    return loading(statusCode);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult Function(int id, String name, int age, int? statusCode)? $default, {
+    TResult Function(int? statusCode)? loading,
+    TResult Function(String message, int? statusCode)? error,
+  }) {
+    return loading?.call(statusCode);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(int id, String name, int age, int? statusCode)? $default, {
+    TResult Function(int? statusCode)? loading,
+    TResult Function(String message, int? statusCode)? error,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(statusCode);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Person value) $default, {
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Error value) error,
+  }) {
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult Function(_Person value)? $default, {
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Error value)? error,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Person value)? $default, {
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _Group implements Group {
-  factory _Group(
-      {required final int id,
-      required final String name,
-      required final School school}) = _$_Group;
+abstract class _Loading implements Person {
+  factory _Loading({final int? statusCode}) = _$_Loading;
 
   @override
-  int get id => throw _privateConstructorUsedError;
-  @override
-  String get name => throw _privateConstructorUsedError;
-  @override
-  School get school => throw _privateConstructorUsedError;
+  int? get statusCode => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$$_GroupCopyWith<_$_Group> get copyWith =>
+  _$$_LoadingCopyWith<_$_Loading> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$School {
-  int get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $SchoolCopyWith<School> get copyWith => throw _privateConstructorUsedError;
+abstract class _$$_ErrorCopyWith<$Res> implements $PersonCopyWith<$Res> {
+  factory _$$_ErrorCopyWith(_$_Error value, $Res Function(_$_Error) then) =
+      __$$_ErrorCopyWithImpl<$Res>;
+  @override
+  $Res call({String message, int? statusCode});
 }
 
 /// @nodoc
-abstract class $SchoolCopyWith<$Res> {
-  factory $SchoolCopyWith(School value, $Res Function(School) then) =
-      _$SchoolCopyWithImpl<$Res>;
-  $Res call({int id, String name});
-}
+class __$$_ErrorCopyWithImpl<$Res> extends _$PersonCopyWithImpl<$Res>
+    implements _$$_ErrorCopyWith<$Res> {
+  __$$_ErrorCopyWithImpl(_$_Error _value, $Res Function(_$_Error) _then)
+      : super(_value, (v) => _then(v as _$_Error));
 
-/// @nodoc
-class _$SchoolCopyWithImpl<$Res> implements $SchoolCopyWith<$Res> {
-  _$SchoolCopyWithImpl(this._value, this._then);
-
-  final School _value;
-  // ignore: unused_field
-  final $Res Function(School) _then;
+  @override
+  _$_Error get _value => super._value as _$_Error;
 
   @override
   $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
+    Object? message = freezed,
+    Object? statusCode = freezed,
   }) {
-    return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+    return _then(_$_Error(
+      message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
-  }
-}
-
-/// @nodoc
-abstract class _$$_SchoolCopyWith<$Res> implements $SchoolCopyWith<$Res> {
-  factory _$$_SchoolCopyWith(_$_School value, $Res Function(_$_School) then) =
-      __$$_SchoolCopyWithImpl<$Res>;
-  @override
-  $Res call({int id, String name});
-}
-
-/// @nodoc
-class __$$_SchoolCopyWithImpl<$Res> extends _$SchoolCopyWithImpl<$Res>
-    implements _$$_SchoolCopyWith<$Res> {
-  __$$_SchoolCopyWithImpl(_$_School _value, $Res Function(_$_School) _then)
-      : super(_value, (v) => _then(v as _$_School));
-
-  @override
-  _$_School get _value => super._value as _$_School;
-
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
-  }) {
-    return _then(_$_School(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
+      statusCode: statusCode == freezed
+          ? _value.statusCode
+          : statusCode // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_School implements _School {
-  _$_School({required this.id, required this.name});
+class _$_Error implements _Error {
+  _$_Error(this.message, {this.statusCode});
 
   @override
-  final int id;
+  final String message;
   @override
-  final String name;
+  final int? statusCode;
 
   @override
   String toString() {
-    return 'School(id: $id, name: $name)';
+    return 'Person.error(message: $message, statusCode: $statusCode)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_School &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.name, name));
+            other is _$_Error &&
+            const DeepCollectionEquality().equals(other.message, message) &&
+            const DeepCollectionEquality()
+                .equals(other.statusCode, statusCode));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(name));
+      const DeepCollectionEquality().hash(message),
+      const DeepCollectionEquality().hash(statusCode));
 
   @JsonKey(ignore: true)
   @override
-  _$$_SchoolCopyWith<_$_School> get copyWith =>
-      __$$_SchoolCopyWithImpl<_$_School>(this, _$identity);
+  _$$_ErrorCopyWith<_$_Error> get copyWith =>
+      __$$_ErrorCopyWithImpl<_$_Error>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(int id, String name, int age, int? statusCode) $default, {
+    required TResult Function(int? statusCode) loading,
+    required TResult Function(String message, int? statusCode) error,
+  }) {
+    return error(message, statusCode);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult Function(int id, String name, int age, int? statusCode)? $default, {
+    TResult Function(int? statusCode)? loading,
+    TResult Function(String message, int? statusCode)? error,
+  }) {
+    return error?.call(message, statusCode);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(int id, String name, int age, int? statusCode)? $default, {
+    TResult Function(int? statusCode)? loading,
+    TResult Function(String message, int? statusCode)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(message, statusCode);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Person value) $default, {
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Error value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult Function(_Person value)? $default, {
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Error value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Person value)? $default, {
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _School implements School {
-  factory _School({required final int id, required final String name}) =
-      _$_School;
+abstract class _Error implements Person {
+  factory _Error(final String message, {final int? statusCode}) = _$_Error;
 
+  String get message => throw _privateConstructorUsedError;
   @override
-  int get id => throw _privateConstructorUsedError;
-  @override
-  String get name => throw _privateConstructorUsedError;
+  int? get statusCode => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$$_SchoolCopyWith<_$_School> get copyWith =>
+  _$$_ErrorCopyWith<_$_Error> get copyWith =>
       throw _privateConstructorUsedError;
 }
